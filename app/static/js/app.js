@@ -6,6 +6,14 @@ Handlebars.registerHelper('formatDate', function(date) {
 
 $(function () {
     //提交查询表单
+    $('form.uploadForm').submit(function (event) {
+        $('#waitModal').modal('show');
+        event.preventDefault();
+        var path = $('#input-file')[0].files[0].path;
+        ipcRenderer.send('uploadFile', path );
+    });
+
+    //提交查询表单
     $('form.searchForm').submit(function (event) {
         $('#waitModal').modal('show');
         event.preventDefault();

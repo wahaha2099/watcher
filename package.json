@@ -28,18 +28,25 @@
       ]
     },
     "win": {
-      "publish": ["github", "bintray"]
+      "publish": [
+        "github",
+        "bintray"
+      ]
     },
     "linux": {
       "publish": null,
-      "target": ["deb", "AppImage"]
+      "target": [
+        "deb",
+        "AppImage"
+      ]
     }
   },
   "devDependencies": {
     "devtron": "^1.1.0",
-    "electron-builder": "next",
-    "electron": "1.3.5",
-    "rimraf": "^2.5.4",
-    "typescript": "^1.8.10"
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.4.3",
+    "node-xlsx":"^0.14.1"
   }
 }

@@ -2,10 +2,17 @@ const request = require('request'),
     async = require('async'),
     ipcMain = require('electron').ipcMain,
     db = require('./dbService'),
-    cheerio = require('cheerio');
+    cheerio = require('cheerio'),
+    excel = require('./excelApi');
+
 
 const CrawlService = {
     start: function () {
+        ipcMain.on('uploadFile', function (event, filePath ) {
+            console.log('channel "uploadForm" on msg:' + filePath );
+            event.sender.send('search-reply', {mails: []});
+            excel.analysisdata( filePath );
+        });
         ipcMain.on('search-keyword', function (event, keyword) {
             console.log('channel "search-keyword" on msg:' + keyword);
 
@@ -106,6 +113,8 @@ function pageCrawl(page, totalPage, updater, crawlNextPage, crawProgress) {
 function crawler(updater) {
     new UrlCrawler('http://12345.chengdu.gov.cn/moreMail').startCrawl(($) => {
         var totalSize = $('div.pages script').html().match(/iRecCount = \d+/g)[0].match(/\d+/g)[0],
+
+            totalSize = 15 , //测试写死
             totalPageSize = Math.ceil(totalSize / 15),
             pagesCollection = [],
             crawProgress = {skip: false};

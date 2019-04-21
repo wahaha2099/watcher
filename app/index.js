@@ -1,10 +1,10 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
-const CrawlService = require('./libs/crawlService');
+const controller = require('./libs/controller');
 
 //start crawl service
-CrawlService.start();
+controller.start();
 
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
