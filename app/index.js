@@ -20,11 +20,15 @@ function onClosed() {
 
 function createMainWindow() {
     const win = new electron.BrowserWindow({
+        webPreferences: {
+            nodeIntegration: false
+        },
         width: 1200,
         height: 800
     });
 
-    win.loadURL(`file://${__dirname}/static/index.html`);
+    win.loadURL(`file://${__dirname}/static/html/login/login.html`);
+    // win.loadURL(`file://${__dirname}/static/index.html`);
     win.openDevTools();
     win.on('closed', onClosed);
 

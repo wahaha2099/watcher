@@ -118,7 +118,7 @@ function createMainWindow() {
 }
 ```
 在UI页面开发的过程中, 有一点需要注意的是: 默认情况下页面会出现jQuery, require等组件加载失败的情况, 这是因为浏览器window加载了NodeJs的一些方法, 和jQuery类库的方法冲突. 所以我们需要做些特别的处理, 在浏览器window中把这些NodeJs的方法删掉:  
-*代码:preload.js*  
+*代码:electron-preload.js*
 ```JavaScript
 // 解决require冲突导致jQuery等组件不可用的问题
 window.nodeRequire = require;
